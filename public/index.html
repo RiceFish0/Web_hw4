@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐾 綠色萌爪：環保貓砂價格觀測站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- 引入 Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <!-- 引入外部 JavaScript -->
+  <script src="/javascripts/main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header class="scroll-reveal">
+      <h1><span class="icon-spin"><i class="fas fa-paw"></i></span> 綠色萌爪：環保貓砂價格觀測站</h1>
+    </header>
+
+    <main class="main-content">
+      <!-- 左半部：搜尋與新增 -->
+      <aside class="left-panel scroll-reveal">
+        
+        <!-- 查詢功能卡片 -->
+        <section class="card search-card">
+          <div class="card-header">
+            <i class="fas fa-search icon-scale"></i>
+            <h2>搜尋過濾</h2>
+          </div>
+          <div class="search-vertical">
+            <input type="search" id="searchInput" placeholder="輸入產品或品牌...">
+            <div class="button-group">
+              <button type="button" id="searchBtn" class="btn btn-primary">搜尋</button>
+              <button type="button" id="clearSearchBtn" class="btn btn-outline">清除</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 新增紀錄卡片 (與上方搜尋卡片已有間距) -->
+        <section class="card insert-card">
+          <div class="card-header">
+            <i class="fas fa-plus-circle icon-scale"></i>
+            <h2>新增價格紀錄</h2>
+          </div>
+          <form id="insertForm" class="vertical-form">
+            <div class="input-group">
+              <label for="id">ID (選填)</label>
+              <input type="number" name="id" id="id" placeholder="自動生成">
+            </div>
+            <div class="input-group">
+              <label for="observed_at">觀測日期</label>
+              <input type="date" name="observed_at" id="observed_at" required>
+            </div>
+            <div class="input-group">
+              <label for="product_name">商品名稱</label>
+              <input type="text" name="product_name" id="product_name" required placeholder="例：益生菌消臭豆腐砂">
+            </div>
+            <div class="input-group">
+              <label for="price">商品價格 (NTD)</label>
+              <input type="number" name="price" id="price" required placeholder="例：250">
+            </div>
+            <div class="input-group">
+              <label for="brand">品牌</label>
+              <input type="text" name="brand" id="brand" placeholder="例：汪喵星球">
+            </div>
+            
+            <div class="button-group-single">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-plus"></i> 確認新增紀錄
+              </button>
+            </div>
+          </form>
+          <p id="message" class="message"></p>
+        </section>
+      </aside>
+
+      <!-- 右半部：圖表與資料表 -->
+      <article class="right-panel scroll-reveal">
+        
+        <!-- 價格趨勢圖表卡片 -->
+        <section class="card chart-card">
+          <div class="card-header">
+            <i class="fas fa-chart-line icon-scale"></i>
+            <h2>價格變動趨勢圖</h2>
+          </div>
+          <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </section>
+
+        <!-- 歷史資料表格卡片 -->
+        <section class="card history-card">
+          <div class="card-header">
+            <i class="fas fa-table icon-scale"></i>
+            <h2>價格追蹤清單 (ID 排序)</h2>
+          </div>
+          <div id="quotesContainer" class="table-container">
+            <p class="table-placeholder">資料準備中...</p>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

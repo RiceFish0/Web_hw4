@@ -1,0 +1,6 @@
+-- database: ./db/sqlite.db
+
+-- 要運行整個文件，請按窗口右上角的?按鈕。
+
+SELECT * FROM litter_prices;
+DELETE FROM litter_prices WHERE id = 21;
