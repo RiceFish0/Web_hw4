@@ -87,7 +87,7 @@ form.addEventListener('submit', async (e) => {
         observed_at: form.observed_at.value,
         product_name: form.product_name.value,
         price: Number(form.price.value),
-        brand: form.brand.value || undefined
+        brand: form.brand.value ? form.brand.value.trim() : undefined
     };
 
     try {
@@ -169,11 +169,17 @@ function renderChart(rows) {
     const labels = [...new Set(sortedByDate.map(r => r.observed_at).filter(d => d))].sort();
 
     // 將資料依產品分組
+// 將資料依產品分組
     const products = {};
     sortedByDate.forEach(r => {
         if (!r.observed_at) return;
-        if (!products[r.product_name]) products[r.product_name] = {};
-        products[r.product_name][r.observed_at] = r.price;
+        
+        // 👇 取得乾淨的名稱（砍掉空白）
+        const cleanName = r.product_name.trim(); 
+        
+        // 👇 用乾淨的名稱來分組
+        if (!products[cleanName]) products[cleanName] = {};
+        products[cleanName][r.observed_at] = r.price;
     });
 
     const colors = ['#63C1A0', '#FF9F43', '#54A0FF', '#FF6B6B', '#A29BFE', '#48dbfb'];
