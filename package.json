@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./bin/www",
+    "build": "npm install && npm rebuild sqlite3",
     "convert-encoding": "node ./scripts/convert-to-utf8.js"
   },
   "dependencies": {
